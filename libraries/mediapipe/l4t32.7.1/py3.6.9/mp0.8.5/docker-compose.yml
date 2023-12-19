@@ -1,0 +1,25 @@
+version: "3"
+
+# Example docker compose
+
+services:
+
+  app:
+    image: ghcr.io/lanzani/mediapipe:l4t32.7.1-py3.6.9-ocv4.8.0-mp0.8.5
+    stdin_open: true
+    tty: true
+    network_mode: host
+    volumes:
+      - /tmp/argus_socket:/tmp/argus_socket
+      - /etc/enctune.conf:/etc/enctune.conf
+      - /etc/nv_tegra_release:/etc/nv_tegra_release
+      - /tmp/nv_jetson_model:/tmp/nv_jetson_model
+      - /tmp/.X11-unix/:/tmp/.X11-unix
+      - /tmp/.docker.xauth:/tmp/.docker.xauth
+    devices:
+      - /dev/snd
+      - /dev/bus/usb
+      - /dev/video0
+    environment:
+      - DISPLAY=:0
+      - XAUTHORITY=/tmp/.docker.xauth

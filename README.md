@@ -1,5 +1,18 @@
 # Jetson Libraries
 
-ghcr.io/lanzani/mediapipe:l4t32.7.1-py3.6.8-mp0.8.5
+## Python
 
-ghcr.io/lanzani/mediapipe:l4t32.7.1-py3.8.0-ocv4.8.0-mp0.10.7-build
+See: http://jetson-docs.federicolanzani.com/libraries/python/overview
+
+| Jetpack (l4t) | Python | Docs page | Docker Image |
+|---------------|--------|-----------|--------------|
+
+## OpenCV
+
+| Jetpack (l4t) | Python | OpenCV | Docs page | Docker Image |
+|---------------|--------|--------|-----------|--------------|
+
+## Mediapipe (with GPU)
+
+| Jetpack (l4t) | Python | OpenCV | Mediapipe | Docs page | Docker Image |
+|---------------|--------|--------|-----------|-----------|--------------|
