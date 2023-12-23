@@ -5,7 +5,7 @@ version: "3"
 services:
 
   app:
-    image: federicolanzani/mediapipe-jetson:build-l4t32.7.1-py3.8.0-mp0.10.7
+    image: ghcr.io/lanzani/mediapipe:l4t32.7.1-py3.8.0-ocv4.8.0-mp0.10.7-build
     stdin_open: true
     tty: true
     network_mode: host
@@ -14,10 +14,8 @@ services:
       - /etc/enctune.conf:/etc/enctune.conf
       - /etc/nv_tegra_release:/etc/nv_tegra_release
       - /tmp/nv_jetson_model:/tmp/nv_jetson_model
-      - /home/jetson05/jetson-containers/data:/data
       - /tmp/.X11-unix/:/tmp/.X11-unix
       - /tmp/.docker.xauth:/tmp/.docker.xauth
-      - /home/jetson05/:/home/
     devices:
       - /dev/snd
       - /dev/bus/usb

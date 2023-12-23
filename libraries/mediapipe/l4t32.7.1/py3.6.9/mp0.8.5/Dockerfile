@@ -1,4 +1,3 @@
-#FROM federicolanzani/opencv-cuda-jetson:l4t-base-r32.7.1-python3.6.9
 FROM ghcr.io/lanzani/opencv:l4t32.7.1-py3.6.8-ocv4.8.0
 
 LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries

@@ -1,4 +1,8 @@
-FROM federicolanzani/opencv-cuda-jetson:l4t-base-r32.7.1-python3.8.0
+FROM ghcr.io/lanzani/opencv:l4t32.7.1-py3.8.0-ocv4.8.0
+
+LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries
+LABEL org.opencontainers.image.description="Mediapipe 0.10.7 with opencv 4.8.0 built with cuda, for python 3.8.0."
+LABEL org.opencontainers.image.licenses=MIT
 
 RUN apt-get update \
     && apt-get upgrade -y \
