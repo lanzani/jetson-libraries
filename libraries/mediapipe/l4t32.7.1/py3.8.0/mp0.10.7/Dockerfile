@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.licenses=MIT
 RUN apt-get update \
     && apt-get upgrade
 
-RUN apt install -y \
+RUN apt-get install -y \
     libopencv-core-dev \
     libopencv-highgui-dev \
     libopencv-calib3d-dev \
