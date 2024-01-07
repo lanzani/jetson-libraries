@@ -1,22 +1,41 @@
 # Jetson Libraries
 
+More info on [jetson-docs.com](https://jetson-docs.com/)
+
 ## Python
 
-See: [jetson-docs.com/libraries/python/overview](http://jetson-docs.com/libraries/python/overview)
+See the [docs](https://jetson-docs.com/libraries/python/overview).
 
-| Jetpack (l4t) | Python | Docs page | Docker Image |
-|---------------|--------|-----------|--------------|
+| Jetpack (l4t)      | Python  | Install guide                                                        |
+|--------------------|---------|----------------------------------------------------------------------|
+| 4.6.1 (l4t-32.7.1) | 3.8.0   | [here](https://jetson-docs.com/libraries/opencv/l4t32.7.1/py3.6.9)   |
+| 4.6.1 (l4t-32.7.1) | 3.10.11 | [here](https://jetson-docs.com/libraries/opencv/l4t32.7.1/py3.8.0)   |
+| 4.6.1 (l4t-32.7.1) | 3.11.3  | [here](https://jetson-docs.com/libraries/opencv/l4t32.7.1/py3.10.11) |
+
+For docker images see [here](https://jetson-docs.com/libraries/python/overview#docker-images).
 
 ## OpenCV
 
-See: [jetson-docs.com/libraries/opencv/overview](http://jetson-docs.com/libraries/opencv/overview)
+See the [docs](http://jetson-docs.com/libraries/opencv/overview).
 
-| Jetpack (l4t) | Python | OpenCV | Docs page | Docker Image |
-|---------------|--------|--------|-----------|--------------|
+| Jetpack (l4t)      | Python  | OpenCV | Install guide                                                           |
+|--------------------|---------|--------|-------------------------------------------------------------------------|
+| 4.6.1 (l4t-32.7.1) | 3.6.9   | 4.8.0  | [here](/libraries/opencv/l4t32.7.1/py3.6.9#opencv-4-8-0-installation)   |
+| 4.6.1 (l4t-32.7.1) | 3.8.0   | 4.8.0  | [here](/libraries/opencv/l4t32.7.1/py3.8.0#opencv-4-8-0-installation)   |
+| 4.6.1 (l4t-32.7.1) | 3.10.11 | 4.8.0  | [here](/libraries/opencv/l4t32.7.1/py3.10.11#opencv-4-8-0-installation) |
+| 4.6.1 (l4t-32.7.1) | 3.11.3  | 4.8.0  | WIP                                                                     |
+
+For docker images see [here](https://jetson-docs.com/libraries/opencv/overview#docker-images).
 
 ## Mediapipe (with GPU)
 
-See: [jetson-docs.com/libraries/mediapipe/overview](http://jetson-docs.com/libraries/mediapipe/overview)
+See the [docs](http://jetson-docs.com/libraries/mediapipe/overview).
 
-| Jetpack (l4t) | Python | OpenCV | Mediapipe | Docs page | Docker Image |
-|---------------|--------|--------|-----------|-----------|--------------|
+| Jetpack (l4t)      | Python  | Mediapipe | Install guide                                                              |
+|--------------------|---------|-----------|----------------------------------------------------------------------------|
+| 4.6.1 (l4t-32.7.1) | 3.6.9   | 0.8.4     | [go to page](/libraries/mediapipe/l4t32.7.1/py3.6.9#mediapipe-0-8-5-0-8-4) |
+| 4.6.1 (l4t-32.7.1) | 3.6.9   | 0.8.5     | [go to page](/libraries/mediapipe/l4t32.7.1/py3.6.9)                       |
+| 4.6.1 (l4t-32.7.1) | 3.8.0   | 0.10.7    | [go to page](/libraries/mediapipe/l4t32.7.1/py3.8.0)                       |
+| 4.6.1 (l4t-32.7.1) | 3.10.11 | 0.10.7    | [go to page](/libraries/mediapipe/l4t32.7.1/py3.10.11)                     |
+
+For docker images see [here](https://jetson-docs.com/libraries/mediapipe/overview#docker-images).
