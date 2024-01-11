@@ -1,5 +1,9 @@
 FROM ghcr.io/lanzani/python:ubuntu18.04-py3.10.11
 
+LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries
+LABEL org.opencontainers.image.description="Opencv 4.8.0 built with cuda support usign python 3.10.11. Build details in build_opencv/build_opencv.sh"
+LABEL org.opencontainers.image.licenses=MIT
+
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install runtime dependencies
