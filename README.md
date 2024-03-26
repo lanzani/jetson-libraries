@@ -11,6 +11,7 @@ See the [docs](https://jetson-docs.com/libraries/python/overview).
 | 4.6.1 (l4t-32.7.1) | 3.8.0   | [here](https://jetson-docs.com/libraries/opencv/l4t32.7.1/py3.6.9)   |
 | 4.6.1 (l4t-32.7.1) | 3.10.11 | [here](https://jetson-docs.com/libraries/opencv/l4t32.7.1/py3.8.0)   |
 | 4.6.1 (l4t-32.7.1) | 3.11.3  | [here](https://jetson-docs.com/libraries/opencv/l4t32.7.1/py3.10.11) |
+| 5.1.2 (l4t-35.4.1) | 3.6.15  | libraries/python/l4t35.4.1/py3.6.15/Dockerfile                       |
 
 For docker images see [here](https://jetson-docs.com/libraries/python/overview#docker-images).
 
@@ -39,3 +40,5 @@ See the [docs](http://jetson-docs.com/libraries/mediapipe/overview).
 | 4.6.1 (l4t-32.7.1) | 3.10.11 | 0.10.7    | [go to page](/libraries/mediapipe/l4t32.7.1/py3.10.11)                     |
 
 For docker images see [here](https://jetson-docs.com/libraries/mediapipe/overview#docker-images).
+
+# Create docker image & upload container
