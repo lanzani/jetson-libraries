@@ -106,9 +106,10 @@ RUN apt update && apt upgrade -y && \
     python3-pip
 
 RUN pip3 install --upgrade pip &&  \
-    pip3 uninstall -y numpy  matplotlib && \
-    pip3 install wheel numpy && \
-    pip3 install matplotlib
+    pip3 uninstall -y numpy  matplotlib
+
+RUN python3.6 -m pip install --upgrade pip &&  \
+    python3.6 -m pip install numpy
 
 RUN mkdir "build_opencv"
 
