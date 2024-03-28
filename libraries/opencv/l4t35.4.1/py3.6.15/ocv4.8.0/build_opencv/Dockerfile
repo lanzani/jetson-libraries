@@ -1,5 +1,4 @@
-#FROM ghcr.io/lanzani/python:l4t35.4.1-py3.6.15
-FROM dustynv/python:r35.4.1
+FROM ghcr.io/lanzani/python:l4t35.4.1-py3.6.15
 
 LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries
 LABEL org.opencontainers.image.description="Image used to build Opencv 4.8.0, pakcages .sh installer available at /tmp/build_opencv/opencv/build, Build details in build_opencv/build_opencv.sh"
@@ -7,21 +6,6 @@ LABEL org.opencontainers.image.licenses=MIT
 
 ENV DEBIAN_FRONTEND=noninteractive
 #ENV PYTHONPATH=/usr/local/lib/python3.6/site-packages
-
-# Install python 3.6
-# Install tzdata
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt -y install tzdata
-
-RUN apt install -y software-properties-common
-
-# Install dependencies
-RUN add-apt-repository ppa:deadsnakes/ppa && \
-    apt update && \
-    apt install -y python3.6-full && \
-    apt clean
-
-RUN python3.6 -m ensurepip --upgrade
-
 
 RUN apt update && apt upgrade -y && \
     apt install -y \
@@ -111,7 +95,7 @@ RUN pip3 install --upgrade pip &&  \
 RUN python3.6 -m pip install --upgrade pip &&  \
     python3.6 -m pip install numpy
 
-RUN mkdir "build_opencv"
+RUN mkdir "build_opencv" && pwd
 
 COPY build_opencv.sh build_opencv/
 
