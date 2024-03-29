@@ -104,3 +104,5 @@ RUN cd build_opencv && ./build_opencv.sh
 # Create package
 RUN cd /tmp/build_opencv/opencv/build \
     && make package
+
+ENV PYTHONPATH "/usr/local/lib/python3.6/site-packages:${PYTHONPATH}"
