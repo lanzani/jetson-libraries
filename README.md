@@ -1,6 +1,5 @@
 ![jetson-docs-logo](https://github.com/lanzani/jetson-libraries/assets/15637306/ecf4f303-6d05-40a6-9293-cc3d824d5b81)
 
-
 # Jetson Libraries
 
 More info on [jetson-docs.com](https://jetson-docs.com/)
@@ -28,7 +27,7 @@ See the [docs](http://jetson-docs.com/libraries/opencv/overview).
 | 4.6.1 (l4t-32.7.1) | 3.8.0   | 4.8.0  | [here](/libraries/opencv/l4t32.7.1/py3.8.0#opencv-4-8-0-installation)   |
 | 4.6.1 (l4t-32.7.1) | 3.10.11 | 4.8.0  | [here](/libraries/opencv/l4t32.7.1/py3.10.11#opencv-4-8-0-installation) |
 | 4.6.1 (l4t-32.7.1) | 3.11.3  | 4.8.0  | WIP                                                                     |
-| 5.1.2 (l4t-35.4.1) | 3.6.15  | 4.8.0  | WIP                                                                     |
+| 5.1.2 (l4t-35.4.1) | 3.6.15  | 4.8.0  | libraries/opencv/l4t35.4.1/py3.6.15/ocv4.8.0/Dockerfile                 |
 
 For docker images see [here](https://jetson-docs.com/libraries/opencv/overview#docker-images).
 
