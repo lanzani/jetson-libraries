@@ -41,6 +41,7 @@ See the [docs](http://jetson-docs.com/libraries/mediapipe/overview).
 | 4.6.1 (l4t-32.7.1) | 3.6.9   | 0.8.5     | [go to page](/libraries/mediapipe/l4t32.7.1/py3.6.9)                       |
 | 4.6.1 (l4t-32.7.1) | 3.8.0   | 0.10.7    | [go to page](/libraries/mediapipe/l4t32.7.1/py3.8.0)                       |
 | 4.6.1 (l4t-32.7.1) | 3.10.11 | 0.10.7    | [go to page](/libraries/mediapipe/l4t32.7.1/py3.10.11)                     |
+| 5.1.2 (l4t-35.4.1) | 3.8.10  | 0.10.7    | libraries/mediapipe/l4t35.4.1/py3.8.10/mp0.10.7/Dockerfile                 
 
 For docker images see [here](https://jetson-docs.com/libraries/mediapipe/overview#docker-images).
 
