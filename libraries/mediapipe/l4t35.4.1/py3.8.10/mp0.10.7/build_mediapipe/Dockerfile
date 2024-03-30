@@ -159,3 +159,6 @@ RUN python3.8 -m pip install mediapipe-0.10.7/dist/mediapipe-0.10.7-cp38-cp38-li
     && python3.8 -m pip install matplotlib
 
 ENV LD_PRELOAD "/lib/aarch64-linux-gnu/libGLdispatch.so"
+
+# Note:
+# You need to export DISPLAY=:0 on the host machine and run 'xhost +' to allow connections from the container
