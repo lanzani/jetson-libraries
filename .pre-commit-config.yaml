@@ -1,0 +1,25 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+files: \.yml  # Only run on files ending with .txt
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+        args: [ '--maxkb=100000' ]
+      - id: detect-private-key
+      - id: fix-encoding-pragma
+      - id: mixed-line-ending
+      - id: check-byte-order-marker  # Forbid UTF-8 byte-order markers
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.11.4
+    hooks:
+      - id: isort
+        name: isort (python)
