@@ -45,4 +45,12 @@ See the [docs](http://jetson-docs.com/libraries/mediapipe/overview).
 
 For docker images see [here](https://jetson-docs.com/libraries/mediapipe/overview#docker-images).
 
+## Tensorflow + OpenCV
+
+See the [docs](http://jetson-docs.com/libraries/tensorflow/overview).
+
+| Jetpack (l4t)      | Python | Tensorflow | OpenCV | Install guide                                                        |
+|--------------------|--------|------------|--------|----------------------------------------------------------------------|
+| 5.1.2 (l4t-35.4.1) | 3.8.10 | 2.11.0     | 4.8.0  | libraries/tensorflow/l4t35.4.1/py3.8.10/tf2.11.0/ocv4.8.0/Dockerfile 
+
 # Create docker image & upload container
