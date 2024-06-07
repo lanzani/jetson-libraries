@@ -28,6 +28,7 @@ See the [docs](http://jetson-docs.com/libraries/opencv/overview).
 | 4.6.1 (l4t-32.7.1) | 3.10.11 | 4.8.0  | [here](/libraries/opencv/l4t32.7.1/py3.10.11#opencv-4-8-0-installation) |
 | 4.6.1 (l4t-32.7.1) | 3.11.3  | 4.8.0  | WIP                                                                     |
 | 5.1.2 (l4t-35.4.1) | 3.6.15  | 4.8.0  | libraries/opencv/l4t35.4.1/py3.6.15/ocv4.8.0/Dockerfile                 |
+| 6.0 (l4t-36.2.0)   | 3.10.12 | 4.10.0 | libraries/opencv/l4t36.2.0/py3.10.12/ocv4.10.0/Dockerfile               |
 
 For docker images see [here](https://jetson-docs.com/libraries/opencv/overview#docker-images).
 
