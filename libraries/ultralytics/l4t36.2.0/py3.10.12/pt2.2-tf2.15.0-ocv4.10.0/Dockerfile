@@ -1,4 +1,19 @@
-FROM dustynv/l4t-pytorch:r36.2.0
+FROM ghcr.io/lanzani/opencv:l4t36.2.0-py3.10.12-ocv4.10.0
+
+# === Pytorch ==========================================================================================================
+RUN apt update && apt upgrade -y \
+    && apt install -y python3-pip libopenblas-base libopenmpi-dev libomp-dev
+
+RUN pip3 install 'Cython<3'
+RUN pip3 install numpy
+
+COPY torch-2.3.0-cp310-cp310-linux_aarch64.whl /.
+COPY torchaudio-2.3.0+952ea74-cp310-cp310-linux_aarch64.whl /.
+COPY torchvision-0.18.0a0+6043bc2-cp310-cp310-linux_aarch64.whl /.
+
+RUN pip3 install torch-2.3.0-cp310-cp310-linux_aarch64.whl torchaudio-2.3.0+952ea74-cp310-cp310-linux_aarch64.whl torchvision-0.18.0a0+6043bc2-cp310-cp310-linux_aarch64.whl
+
+RUN rm torch-2.3.0-cp310-cp310-linux_aarch64.whl torchaudio-2.3.0+952ea74-cp310-cp310-linux_aarch64.whl torchvision-0.18.0a0+6043bc2-cp310-cp310-linux_aarch64.whl
 
 # === Tensorflow =======================================================================================================
 
@@ -16,23 +31,5 @@ RUN pip3 install -U numpy==1.22 future==0.18.2 mock==3.0.5 keras_preprocessing==
 # TensorFlow
 RUN pip3 install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v60 tensorflow==2.15.0+nv24.05
 
-# === OpenCV ===========================================================================================================
-
-# Install nvidia codec sdk
-COPY libnvcuvid.so /usr/local/cuda/lib64/
-COPY libnvidia-encode.so /usr/local/cuda/lib64/
-COPY cuviddec.h /usr/local/cuda/include/
-COPY nvcuvid.h /usr/local/cuda/include/
-COPY nvEncodeAPI.h /usr/local/cuda/include/
-
-# Install runtime dependencies
-RUN apt update && apt install -y \
-    libtesseract4 \
-    libatlas3-base
-
-COPY OpenCV-unknown-aarch64.sh ./tmp
-
-RUN cd /tmp && ./OpenCV-unknown-aarch64.sh --prefix=/usr/local --skip-license --exclude-subdir
-
-# === Ultralytics ======================================================================================================
+## === Ultralytics =====================================================================================================
 RUN pip3 install ultralytics
