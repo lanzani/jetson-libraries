@@ -8,18 +8,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get upgrade -y --autoremove
 
-# Install tzdata
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
-
-# Install dependencies
-RUN apt-get update && apt-get upgrade && apt-get -y install \
-    git \
-    git-buildpackage \
-    debhelper \
-    autoconf \
-    libncursesw5-dev
-
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y \
     nano \
@@ -55,13 +43,9 @@ RUN apt-get update && apt-get upgrade -y && \
     libxvidcore-dev \
     libx264-dev \
     pkg-config \
-    python3-dev \
-    python3-numpy \
-    python3-matplotlib \
     qv4l2 \
     v4l-utils \
     zlib1g-dev \
-    python3-pip \
     build-essential \
     cmake \
     git \
@@ -91,24 +75,22 @@ RUN apt-get update && apt-get upgrade -y && \
     libtbb-dev \
     libgtk2.0-dev \
     pkg-config \
-    python3-dev \
-    python3-numpy \
     libeigen3-dev
 
-RUN mkdir "build_opencv"
 
-COPY build_opencv.sh build_opencv/
+COPY libnvcuvid.so /usr/local/cuda/lib64/
+COPY libnvidia-encode.so /usr/local/cuda/lib64/
 
-RUN apt-get remove -y python3-numpy python3-matplotlib \
-    && apt-get install -y python3-pip \
-    && python3 -m pip install pybind11 \
-    && python3 -m pip install Cython \
-    && python3 -m pip install setuptools
+COPY cuviddec.h /usr/local/cuda/include/
+COPY nvcuvid.h /usr/local/cuda/include/
+COPY nvEncodeAPI.h /usr/local/cuda/include/
 
-RUN python3 -m pip install numpy
 
-RUN cd build_opencv && ./build_opencv.sh
+COPY build_opencv.sh ./
 
-# Create package
-RUN cd /tmp/build_opencv/opencv/build \
+RUN chmod +x build_opencv.sh
+
+RUN ./build_opencv.sh
+
+RUN cd workspace/opencv-4.10.0/release \
     && make package

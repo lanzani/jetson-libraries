@@ -1,197 +1,90 @@
-#!/usr/bin/env bash
-# 2019 Michael de Gans, https://github.com/mdegans/nano_build_opencv/blob/master/build_opencv.sh
+#!/bin/bash
+#
+# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+#
+# NVIDIA Corporation and its licensors retain all intellectual property
+# and proprietary rights in and to this software, related documentation
+# and any modifications thereto.  Any use, reproduction, disclosure or
+# distribution of this software and related documentation without an express
+# license agreement from NVIDIA Corporation is strictly prohibited.
+#
+
+version="4.10.0"
+folder="workspace"
 
 set -e
 
-# change default constants here:
-readonly PREFIX=/usr/local  # install prefix, (can be ~/.local for a user install)
-readonly DEFAULT_VERSION=4.10.0 # controls the default version (gets reset by the first argument)
-readonly CPUS=$(nproc)  # controls the number of jobs
+echo "** Remove other OpenCV first"
+apt -y purge *libopencv*
 
-# better board detection. if it has 6 or more cpus, it probably has a ton of ram too
-if [[ $CPUS -gt 5 ]]; then
-    # something with a ton of ram
-    JOBS=$CPUS
-else
-    JOBS=1  # you can set this to 4 if you have a swap file
-    # otherwise a Nano will choke towards the end of the build
-fi
+echo "------------------------------------"
+echo "** Install requirement (1/4)"
+echo "------------------------------------"
+apt update
+apt install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+apt install -y python3.10-dev python3-dev python3-numpy
+apt install -y libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev
+apt install -y libv4l-dev v4l-utils qv4l2
+apt install -y curl unzip
 
-cleanup () {
-# https://stackoverflow.com/questions/226703/how-do-i-prompt-for-yes-no-cancel-input-in-a-linux-shell-script
-    while true ; do
-        echo "Do you wish to remove temporary build files in /tmp/build_opencv ? "
-        if ! [[ "$1" -eq "--test-warning" ]] ; then
-            echo "(Doing so may make running tests on the build later impossible)"
-        fi
-        read -p "Y/N " yn
-        case ${yn} in
-            [Yy]* ) rm -rf /tmp/build_opencv ; break;;
-            [Nn]* ) exit ;;
-            * ) echo "Please answer yes or no." ;;
-        esac
-    done
-}
+apt install -y gfortran libeigen3-dev libblas-dev libblas64-dev libatlas-base-dev liblapack-dev libopenblas-dev libgsl-dev
 
-setup () {
-    cd /tmp
-    if [[ -d "build_opencv" ]] ; then
-        echo "It appears an existing build exists in /tmp/build_opencv"
-        cleanup
-    fi
-    mkdir build_opencv
-    cd build_opencv
-}
 
-git_source () {
-    echo "Getting version '$1' of OpenCV"
-    git clone --depth 1 --branch "$1" https://github.com/opencv/opencv.git
-    git clone --depth 1 --branch "$1" https://github.com/opencv/opencv_contrib.git
-}
+echo "------------------------------------"
+echo "** Download opencv "${version}" (2/4)"
+echo "------------------------------------"
+mkdir $folder
+cd ${folder}
+curl -L https://github.com/opencv/opencv/archive/${version}.zip -o opencv-${version}.zip
+curl -L https://github.com/opencv/opencv_contrib/archive/${version}.zip -o opencv_contrib-${version}.zip
+unzip opencv-${version}.zip
+unzip opencv_contrib-${version}.zip
+rm opencv-${version}.zip opencv_contrib-${version}.zip
+cd opencv-${version}/
 
-install_dependencies () {
-    # open-cv has a lot of dependencies, but most can be found in the default
-    # package repository or should already be installed (eg. CUDA).
-    echo "Installing build dependencies."
-    # TODO needed?
-#    apt-get update --fix-missing
-#    apt-get dist-upgrade -y --autoremove
 
-    # Dependencies are installed in Dockerfile
-#    apt-get update
-#    apt-get dist-upgrade -y --autoremove
-#    apt-get install -y \
-#        build-essential \
-#        cmake \
-#        git \
-#        gfortran \
-#        libatlas-base-dev \
-#        libavcodec-dev \
-#        libavformat-dev \
-#        libavresample-dev \
-#        libcanberra-gtk3-module \
-#        libdc1394-22-dev \
-#        libeigen3-dev \
-#        libglew-dev \
-#        libgstreamer-plugins-base1.0-dev \
-#        libgstreamer-plugins-good1.0-dev \
-#        libgstreamer1.0-dev \
-#        libgtk-3-dev \
-#        libjpeg-dev \
-#        libjpeg8-dev \
-#        libjpeg-turbo8-dev \
-#        liblapack-dev \
-#        liblapacke-dev \
-#        libopenblas-dev \
-#        libpng-dev \
-#        libpostproc-dev \
-#        libswscale-dev \
-#        libtbb-dev \
-#        libtbb2 \
-#        libtesseract-dev \
-#        libtiff-dev \
-#        libv4l-dev \
-#        libxine2-dev \
-#        libxvidcore-dev \
-#        libx264-dev \
-#        pkg-config \
-#        python-dev \
-#        python-numpy \
-#        python3-dev \
-#        python3-numpy \
-#        python3-matplotlib \
-#        qv4l2 \
-#        v4l-utils \
-#        zlib1g-dev \
-#        python3.10-dev
-#
-#    pip3 uninstall -y numpy matplotlib
-#    pip3 install numpy matplotlib
-}
+echo "------------------------------------"
+echo "** Build opencv "${version}" (3/4)"
+echo "------------------------------------"
+mkdir release
+cd release/
+cmake -D WITH_CUDA=ON \
+-D WITH_CUDNN=ON \
+-D CUDA_ARCH_BIN="8.7" \
+-D CUDA_ARCH_PTX="" \
+-D CUDA_FAST_MATH=ON \
+-D CUDNN_VERSION='8.9' \
+-D EIGEN_INCLUDE_PATH=/usr/include/eigen3 \
+-D ENABLE_NEON=ON \
+-D OPENCV_DNN_CUDA=ON \
+-D OPENCV_ENABLE_NONFREE=ON \
+-D OPENCV_GENERATE_PKGCONFIG=ON \
+-D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${version}/modules \
+-D WITH_CUBLAS=ON \
+-D WITH_CUDA=ON \
+-D WITH_GSTREAMER=ON \
+-D WITH_LIBV4L=ON \
+-D WITH_OPENGL=ON \
+-D WITH_LAPACK=ON \
+-D BUILD_opencv_python3=ON \
+-D BUILD_TESTS=OFF \
+-D BUILD_PERF_TESTS=OFF \
+-D BUILD_EXAMPLES=OFF \
+-D CMAKE_BUILD_TYPE=RELEASE \
+-D CMAKE_INSTALL_PREFIX=/usr/local .. \
+-D CMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs
+make -j$(nproc)
 
-configure () {
-    local CMAKEFLAGS="
-        -D PYTHON3_INCLUDE_DIR=/usr/include/python3.10
-        -D PYTHON3_INCLUDE_PATH=/usr/include/python3.10
-        -D PYTHON3_EXECUTABLE=`which python3`
-        -D PYTHON_DEFAULT_EXECUTABLE=`which python3`
-        -D BUILD_EXAMPLES=OFF
-        -D BUILD_opencv_python2=ON
-        -D BUILD_opencv_python3=ON
-        -D CMAKE_BUILD_TYPE=RELEASE
-        -D CMAKE_INSTALL_PREFIX=${PREFIX}
-        -D CUDA_ARCH_BIN=8.7
-        -D CUDA_ARCH_PTX=
-        -D CUDA_FAST_MATH=ON
-        -D CUDNN_VERSION='8.9'
-        -D EIGEN_INCLUDE_PATH=/usr/include/eigen3
-        -D ENABLE_NEON=ON
-        -D OPENCV_DNN_CUDA=ON
-        -D OPENCV_ENABLE_NONFREE=ON
-        -D OPENCV_EXTRA_MODULES_PATH=/tmp/build_opencv/opencv_contrib/modules
-        -D OPENCV_GENERATE_PKGCONFIG=ON
-        -D WITH_CUBLAS=ON
-        -D WITH_CUDA=ON
-        -D WITH_CUDNN=ON
-        -D WITH_GSTREAMER=ON
-        -D WITH_LIBV4L=ON
-        -D WITH_OPENGL=ON"
 
-    if [[ "$1" != "test" ]] ; then
-        CMAKEFLAGS="
-        ${CMAKEFLAGS}
-        -D BUILD_PERF_TESTS=OFF
-        -D BUILD_TESTS=OFF"
-    fi
+echo "------------------------------------"
+echo "** Install opencv "${version}" (4/4)"
+echo "------------------------------------"
+make install
+echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
+echo 'export PYTHONPATH=/usr/local/lib/python3.10/site-packages/:$PYTHONPATH' >> ~/.bashrc
+source ~/.bashrc
 
-    echo "cmake flags: ${CMAKEFLAGS}"
 
-    cd opencv
-    mkdir build
-    cd build
-    cmake ${CMAKEFLAGS} .. 2>&1 | tee -a configure.log
-}
-
-main () {
-
-    local VER=${DEFAULT_VERSION}
-
-    # parse arguments
-    if [[ "$#" -gt 0 ]] ; then
-        VER="$1"  # override the version
-    fi
-
-    if [[ "$#" -gt 1 ]] && [[ "$2" == "test" ]] ; then
-        DO_TEST=1
-    fi
-
-    # prepare for the build:
-    setup
-    install_dependencies
-    git_source ${VER}
-
-    if [[ ${DO_TEST} ]] ; then
-        configure test
-    else
-        configure
-    fi
-
-    # start the build
-    make -j${JOBS} 2>&1 | tee -a build.log
-
-    if [[ ${DO_TEST} ]] ; then
-        make test 2>&1 | tee -a test.log
-    fi
-
-    # avoid a sudo make install (and root owned files in ~) if $PREFIX is writable
-    if [[ -w ${PREFIX} ]] ; then
-        make install 2>&1 | tee -a install.log
-    else
-        make install 2>&1 | tee -a install.log
-    fi
-
-#    cleanup --test-warning
-
-}
-
-main "$@"
+echo "** Install opencv "${version}" successfully"
+echo "** Bye :)"
