@@ -6,23 +6,24 @@ LABEL org.opencontainers.image.licenses=MIT
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get upgrade -y --autoremove
+RUN apt update && apt upgrade -y --autoremove
 
 # Install tzdata
-RUN apt-get update && \
+RUN apt update && \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 
-# Install dependencies
-RUN apt-get update && apt-get upgrade \
-    && apt-get remove -y python3-numpy python3-matplotlib \
-    && apt-get install -y  \
+# Install nvidia codec sdk
+COPY build_opencv/libnvcuvid.so /usr/local/cuda/lib64/
+COPY build_opencv/libnvidia-encode.so /usr/local/cuda/lib64/
+COPY build_opencv/cuviddec.h /usr/local/cuda/include/
+COPY build_opencv/nvcuvid.h /usr/local/cuda/include/
+COPY build_opencv/nvEncodeAPI.h /usr/local/cuda/include/
+
+# Install runtime dependencies
+RUN apt install -y \
     libtesseract4 \
-    libatlas3-base \
-    python3-pip \
-    && apt-get clean
+    libatlas3-base
 
-RUN pip install numpy
+COPY OpenCV-unknown-aarch64.sh ./tmp
 
-COPY OpenCV-4.10.0-aarch64.sh ./tmp
-
-RUN cd /tmp && ./OpenCV-4.10.0-aarch64.sh --prefix=/usr/local --skip-license --exclude-subdir
+RUN cd /tmp && ./OpenCV-unknown-aarch64.sh --prefix=/usr/local --skip-license --exclude-subdir

@@ -8,8 +8,6 @@ services:
     image: ghcr.io/lanzani/opencv:l4t36.2.0-py3.10.12-ocv4.10.0
     volumes:
       - ./:/app
-      - /tmp/.X11-unix/:/tmp/.X11-unix  # Required for GUI
+      - /tmp/:/tmp/  # Required for GUI
     environment:
       - DISPLAY=:0
-
-
