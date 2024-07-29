@@ -55,3 +55,9 @@ See the [docs](http://jetson-docs.com/libraries/tensorflow/overview).
 | 5.1.2 (l4t-35.4.1) | 3.8.10 | 2.11.0     | 4.8.0  | libraries/tensorflow/l4t35.4.1/py3.8.10/tf2.11.0/ocv4.8.0/Dockerfile 
 
 # Create docker image & upload container
+
+__Stats__
+
+[![HitCount](https://hits.dwyl.com/lanzani/jetson-libraries.svg?style=flat-square)](http://hits.dwyl.com/lanzani/jetson-libraries)
+
+
