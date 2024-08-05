@@ -12,4 +12,4 @@ services:
       - ./:/app
       - /tmp/:/tmp/  # Required for GUI
     environment:
-      - DISPLAY=:0
+      - DISPLAY=:0  # Required for GUI
