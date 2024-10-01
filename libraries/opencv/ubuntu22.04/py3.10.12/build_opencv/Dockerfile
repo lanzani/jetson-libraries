@@ -80,11 +80,10 @@ RUN apt update && \
 
 RUN wget https://developer.download.nvidia.com/compute/cudnn/9.1.1/local_installers/cudnn-local-repo-ubuntu2204-9.1.1_1.0-1_amd64.deb && \
     dpkg -i cudnn-local-repo-ubuntu2204-9.1.1_1.0-1_amd64.deb && \
-    cp /var/cudnn-local-repo-ubuntu2204-9.1.1/cudnn-*-keyring.gpg /usr/share/keyrings/ && \
-    apt update
+    cp /var/cudnn-local-repo-ubuntu2204-9.1.1/cudnn-*-keyring.gpg /usr/share/keyrings/
 
-RUN apt update && \
-    apt install -y libcudnn9-cuda-12 && \
+RUN apt update && apt upgrade -y && \
+    apt install -y libcudnn9-cuda-12 libcudnn9-dev-cuda-12 libnccl-dev libnccl2 --allow-change-held-packages && \
     apt install -y cudnn
 
 COPY build_opencv.sh ./
@@ -92,3 +91,5 @@ COPY build_opencv.sh ./
 RUN chmod +x build_opencv.sh
 
 RUN ./build_opencv.sh
+
+
