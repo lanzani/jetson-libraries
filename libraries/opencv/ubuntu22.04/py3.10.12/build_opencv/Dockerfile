@@ -77,13 +77,15 @@ RUN apt update && \
     apt install -y curl unzip &&\
     apt install -y gfortran libeigen3-dev libblas-dev libblas64-dev libatlas-base-dev liblapack-dev libopenblas-dev libgsl-dev
 
+
 RUN wget https://developer.download.nvidia.com/compute/cudnn/9.1.1/local_installers/cudnn-local-repo-ubuntu2204-9.1.1_1.0-1_amd64.deb && \
     dpkg -i cudnn-local-repo-ubuntu2204-9.1.1_1.0-1_amd64.deb && \
     cp /var/cudnn-local-repo-ubuntu2204-9.1.1/cudnn-*-keyring.gpg /usr/share/keyrings/ && \
-    apt-get update && \
-    apt-get -y install cudnn
+    apt update
 
-RUN apt install -y install cudnn-cuda-12
+RUN apt update && \
+    apt install -y libcudnn9-cuda-12 && \
+    apt install -y cudnn
 
 COPY build_opencv.sh ./
 
