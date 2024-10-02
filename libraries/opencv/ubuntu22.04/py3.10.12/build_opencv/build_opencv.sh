@@ -14,8 +14,8 @@ folder="workspace"
 
 set -e
 
-echo "** Remove other OpenCV first"
-apt -y purge *libopencv*
+#echo "** Remove other OpenCV first"
+#apt -y purge *libopencv*
 
 echo "------------------------------------"
 echo "** Install requirement (1/4)"
@@ -54,10 +54,10 @@ mkdir release
 cd release/
 cmake -D WITH_CUDA=ON \
 -D WITH_CUDNN=ON \
--D CUDA_ARCH_BIN="6.1;8.9" \
+-D CUDA_ARCH_BIN="6.1" \
 -D CUDA_ARCH_PTX="" \
 -D CUDA_FAST_MATH=ON \
--D CUDNN_VERSION='9.4' \
+-D CUDNN_VERSION='9.1' \
 -D EIGEN_INCLUDE_PATH=/usr/include/eigen3 \
 -D ENABLE_NEON=OFF \
 -D OPENCV_DNN_CUDA=ON \
@@ -77,8 +77,13 @@ cmake -D WITH_CUDA=ON \
 -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_INSTALL_PREFIX=/usr/local .. \
 -D CMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs \
--D BUILD_opencv_gapi=OFF \
--D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3
+-D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+-D BUILD_opencv_java=OFF \
+-D WITH_CUFFT=ON \
+-D WITH_IPP=ON \
+-D WITH_TBB=ON \
+-D WITH_EIGEN=ON \
+-D WITH_NVCUVID=ON
 make -j$(nproc)
 
 
