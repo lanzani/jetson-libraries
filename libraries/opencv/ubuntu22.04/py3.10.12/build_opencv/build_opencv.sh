@@ -44,6 +44,8 @@ rm opencv-${version}.zip opencv_contrib-${version}.zip
 cd opencv-${version}/
 
 
+# compute capabilities: https://developer.nvidia.com/cuda-gpus
+
 echo "------------------------------------"
 echo "** Build opencv "${version}" (3/4)"
 echo "------------------------------------"
@@ -51,7 +53,7 @@ mkdir release
 cd release/
 cmake -D WITH_CUDA=ON \
 -D WITH_CUDNN=ON \
--D CUDA_ARCH_BIN="6.1" \
+-D CUDA_ARCH_BIN="6.1;8.9" \
 -D CUDA_ARCH_PTX="" \
 -D CUDA_FAST_MATH=ON \
 -D CUDNN_VERSION='9.1' \
