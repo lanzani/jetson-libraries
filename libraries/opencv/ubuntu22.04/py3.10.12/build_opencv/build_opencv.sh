@@ -14,21 +14,21 @@ folder="workspace"
 
 set -e
 
-#echo "** Remove other OpenCV first"
-#apt -y purge *libopencv*
+echo "** Remove other OpenCV first"
+apt -y purge *libopencv*
 
 echo "------------------------------------"
 echo "** Install requirement (1/4)"
 echo "------------------------------------"
-#apt update
-#apt install -y build-essential cmake gcc g++ git libgtk-3-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-#apt install -y libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev
-#apt install -y python3-dev python3-numpy
-#apt install -y libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev
-#apt install -y libv4l-dev v4l-utils qv4l2
-#apt install -y curl unzip
-#
-#apt install -y gfortran libeigen3-dev libblas-dev libblas64-dev libatlas-base-dev liblapack-dev libopenblas-dev libgsl-dev
+apt update
+apt install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+apt install -y python3.10-dev python3-dev python3-numpy
+apt install -y libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev
+apt install -y libv4l-dev v4l-utils qv4l2
+apt install -y curl unzip
+
+apt install -y gfortran libeigen3-dev libblas-dev libblas64-dev libatlas-base-dev liblapack-dev libopenblas-dev libgsl-dev
 
 
 echo "------------------------------------"
@@ -47,9 +47,6 @@ cd opencv-${version}/
 echo "------------------------------------"
 echo "** Build opencv "${version}" (3/4)"
 echo "------------------------------------"
-
-# Compute capabilities https://developer.nvidia.com/cuda-gpus
-
 mkdir release
 cd release/
 cmake -D WITH_CUDA=ON \
@@ -59,7 +56,6 @@ cmake -D WITH_CUDA=ON \
 -D CUDA_FAST_MATH=ON \
 -D CUDNN_VERSION='9.1' \
 -D EIGEN_INCLUDE_PATH=/usr/include/eigen3 \
--D ENABLE_NEON=OFF \
 -D OPENCV_DNN_CUDA=ON \
 -D OPENCV_ENABLE_NONFREE=ON \
 -D OPENCV_GENERATE_PKGCONFIG=ON \
@@ -76,14 +72,7 @@ cmake -D WITH_CUDA=ON \
 -D BUILD_EXAMPLES=OFF \
 -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_INSTALL_PREFIX=/usr/local .. \
--D CMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs \
--D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
--D BUILD_opencv_java=OFF \
--D WITH_CUFFT=ON \
--D WITH_IPP=ON \
--D WITH_TBB=ON \
--D WITH_EIGEN=ON \
--D WITH_NVCUVID=ON
+-D CMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs
 make -j$(nproc)
 
 
