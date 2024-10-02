@@ -1,0 +1,18 @@
+# Example docker compose
+
+services:
+
+  app:
+    image: ghcr.io/lanzani/opencv:ubuntu22.04-py3.10.12-ocv4.10.0
+    volumes:
+      - ./:/app
+      - /tmp/:/tmp/  # Required for GUI
+    environment:
+      - DISPLAY=:0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
