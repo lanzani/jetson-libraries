@@ -15,6 +15,7 @@ RUN apt update && \
 # Install runtime dependencies
 RUN apt update && \
     apt install -y \
+    nano \
     libtesseract4 \
     libatlas3-base \
     python3 \
@@ -23,7 +24,13 @@ RUN apt update && \
     libavformat58 \
     libgstreamer1.0-0 \
     libgstreamer-plugins-base1.0-0 \
-    libgtk-3-0
+    libgtk-3-0 \
+    libcanberra-gtk3-module \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-libav
 
 COPY OpenCV-unknown-x86_64.sh ./tmp
 
