@@ -1,5 +1,4 @@
 FROM nvcr.io/nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
-#FROM nvidia/cuda:12.2.2-cudnn8-devel-ubuntu22.04
 
 LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries
 LABEL org.opencontainers.image.description="Image used to build Opencv 4.10.0, pakcages .sh installer available at /tmp/build_opencv/opencv/build, Build details in build_opencv/build_opencv.sh"
@@ -78,6 +77,7 @@ RUN apt-get update && apt-get upgrade -y && \
     libeigen3-dev
 
 # Install nvidia codec sdk
+# NOTE: not installed due to a format error of one of theese files
 #COPY libnvcuvid.so /usr/local/cuda/lib64/
 #COPY libnvidia-encode.so /usr/local/cuda/lib64/
 #COPY cuviddec.h /usr/local/cuda/include/
