@@ -14,6 +14,7 @@ RUN pip3 install --upgrade pip
 
 # === Tensorflow =======================================================================================================
 RUN pip3 install tensorflow[and-cuda]==2.15.1
+RUN pip3 install tensorrt==8.6.1
 
 # === Pytorch ==========================================================================================================
 # Install Python packages
