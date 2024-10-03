@@ -1,4 +1,4 @@
-FROM ghcr.io/lanzani/opencv:ubuntu22.04-py3.10.12-ocv4.10.0
+FROM ghcr.io/lanzani/opencv:ubuntu22.04-cu12.4-py3.10.12-ocv4.10.0
 
 LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries
 LABEL org.opencontainers.image.description="Ultralytics libraries on Ubuntu 22.04 with Python 3.10.12, Pytorch 2.4.1, Tensorflow  and OpenCV 4.10.0"
