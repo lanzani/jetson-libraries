@@ -3,3 +3,4 @@ libraries/opencv/ubuntu18.04/py3.10.11/ocv4.8.0/OpenCV-4.8.0-x86_64.sh filter=lf
 libraries/opencv/l4t35.4.1/py3.8.10/OpenCV-4.8.0-aarch64.sh filter=lfs diff=lfs merge=lfs -text
 libraries/opencv/l4t35.4.1/py3.6.15/ocv4.8.0/OpenCV-4.8.0-aarch64.sh filter=lfs diff=lfs merge=lfs -text
 libraries/tensorflow/l4t35.4.1/py3.8.10/tf2.11.0/ocv4.8.0/OpenCV-4.8.0-aarch64.sh filter=lfs diff=lfs merge=lfs -text
+libraries/ultralytics/l4t36.3.0/py3.10.12/pt2.3-tf2.15-ocv4.10.0/torch-2.3.0-cp310-cp310-linux_aarch64.whl filter=lfs diff=lfs merge=lfs -text
