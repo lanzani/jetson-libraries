@@ -26,3 +26,5 @@ RUN pip3 install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url 
 RUN pip3 install ultralytics
 
 RUN pip3 install tensorrt==8.6.1
+
+RUN apt update && apt install -y libnvinfer-plugin8 libnvinfer8
