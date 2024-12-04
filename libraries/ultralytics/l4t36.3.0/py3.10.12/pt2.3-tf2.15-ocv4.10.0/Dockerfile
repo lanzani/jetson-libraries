@@ -31,5 +31,5 @@ RUN pip3 install -U numpy==1.22 future==0.18.2 mock==3.0.5 keras_preprocessing==
 # TensorFlow
 RUN pip3 install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v60 tensorflow==2.15.0+nv24.05
 
-## === Ultralytics =====================================================================================================
+# === Ultralytics ======================================================================================================
 RUN pip3 install ultralytics

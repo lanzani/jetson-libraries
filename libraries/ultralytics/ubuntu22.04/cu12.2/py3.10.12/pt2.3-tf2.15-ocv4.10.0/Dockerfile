@@ -22,9 +22,9 @@ RUN pip3 install numpy scipy
 # Install PyTorch and torchvision
 RUN pip3 install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121
 
-# === Ultralytics =====================================================================================================
-RUN pip3 install ultralytics
-
 RUN pip3 install tensorrt==8.6.1
 
 RUN apt update && apt install -y libnvinfer-plugin8 libnvinfer8
+
+# === Ultralytics =====================================================================================================
+RUN pip3 install ultralytics
