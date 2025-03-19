@@ -1,0 +1,13 @@
+version: "3"
+
+# Example docker compose
+
+services:
+
+  app:
+    image: ghcr.io/lanzani/opencv:l4t36.3.0-py3.10.12-ocv4.10.0
+    volumes:
+      - ./:/app
+      - /tmp/:/tmp/  # Required for GUI
+    environment:
+      - DISPLAY=:0
