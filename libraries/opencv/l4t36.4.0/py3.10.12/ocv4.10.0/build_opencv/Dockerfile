@@ -77,12 +77,12 @@ RUN apt-get update && apt-get upgrade -y && \
     pkg-config \
     libeigen3-dev
 
-# # Install nvidia codec sdk
-# COPY libnvcuvid.so /usr/local/cuda/lib64/
-# COPY libnvidia-encode.so /usr/local/cuda/lib64/
-# COPY cuviddec.h /usr/local/cuda/include/
-# COPY nvcuvid.h /usr/local/cuda/include/
-# COPY nvEncodeAPI.h /usr/local/cuda/include/
+# Install nvidia codec sdk
+COPY libnvcuvid.so /usr/local/cuda/lib64/
+COPY libnvidia-encode.so /usr/local/cuda/lib64/
+COPY cuviddec.h /usr/local/cuda/include/
+COPY nvcuvid.h /usr/local/cuda/include/
+COPY nvEncodeAPI.h /usr/local/cuda/include/
 
 COPY build_opencv.sh ./
 
