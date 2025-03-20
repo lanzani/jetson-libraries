@@ -23,6 +23,8 @@ COPY build_opencv/nvcuvid.h /usr/local/cuda/include/
 COPY build_opencv/nvEncodeAPI.h /usr/local/cuda/include/
 
 COPY OpenCV-unknown-aarch64.sh /tmp/
+
 RUN cd /tmp && \
+    chmod +x OpenCV-unknown-aarch64.sh && \
     ./OpenCV-unknown-aarch64.sh --prefix=/usr/local --skip-license --exclude-subdir && \
     rm -rf /tmp/*
