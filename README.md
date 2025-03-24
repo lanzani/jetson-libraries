@@ -2,6 +2,9 @@
 
 # Jetson Libraries
 
+⚠️ LOOKING FOR MANTAINERS ⚠️
+Just open an issue and let's talk :)
+
 More info on [jetson-docs.com](https://jetson-docs.com/)
 
 ## Python
