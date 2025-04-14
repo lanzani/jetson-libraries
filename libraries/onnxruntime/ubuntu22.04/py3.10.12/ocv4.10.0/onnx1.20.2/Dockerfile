@@ -17,4 +17,4 @@ RUN apt update && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN python3 -m pip install onnxruntime-gpu==1.20.2 tensorrt==10.3.0
+RUN pip3 install --no-cache onnxruntime-gpu==1.20.2 tensorrt==10.3.0

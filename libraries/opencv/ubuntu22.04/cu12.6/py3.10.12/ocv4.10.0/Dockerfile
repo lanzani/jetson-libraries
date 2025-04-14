@@ -35,14 +35,3 @@ RUN cd /tmp && \
     chmod +x OpenCV-unknown-x86_64.sh && \
     ./OpenCV-unknown-x86_64.sh --prefix=/usr/local --skip-license --exclude-subdir && \
     rm -rf /tmp/*
-
-
-#
-#COPY OpenCV-unknown-x86_64.sh ./tmp
-#
-#RUN cd /tmp && ./OpenCV-unknown-x86_64.sh --prefix=/usr/local --skip-license --exclude-subdir
-#
-#RUN rm -rf /tmp/*
-
-#RUN echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> ~/.bashrc && \
-#    echo 'export PYTHONPATH=/usr/local/lib/python3.10/site-packages/:$PYTHONPATH' >> ~/.bashrc
