@@ -1,4 +1,5 @@
 FROM nvcr.io/nvidia/cuda:12.6.3-cudnn-runtime-ubuntu22.04
+# TO ghcr.io/lanzani/opencv:ubuntu22.04-cu12.6-py3.10.12-ocv4.10.0
 
 LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries
 LABEL org.opencontainers.image.description="Opencv 4.10.0 built with cuda support on jetson nano usign python 3.10.12. Build details in build_opencv/build_opencv.sh"

@@ -1,4 +1,5 @@
-FROM ghcr.io/lanzani/opencv:l4t36.4.0-cu12.6-py3.10.12-ocv4.10.0
+FROM nvcr.io/nvidia/l4t-jetpack:r36.4.0
+# TO ghcr.io/lanzani/onnxruntime:l4t36.4.0-cu12.6-py3.10.12-onnx1.20.2-trt10.3.0
 
 LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries \
       org.opencontainers.image.description="onnxruntime-gpu build for jetson, source: https://pypi.jetson-ai-lab.dev/jp6/cu126/onnxruntime-gpu/1.20.2" \

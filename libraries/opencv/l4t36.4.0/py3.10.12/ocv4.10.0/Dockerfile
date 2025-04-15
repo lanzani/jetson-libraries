@@ -1,4 +1,5 @@
 FROM nvcr.io/nvidia/l4t-jetpack:r36.4.0
+# TO ghcr.io/lanzani/opencv:l4t36.4.0-cu12.6-py3.10.12-ocv4.10.0
 
 LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries \
       org.opencontainers.image.description="Opencv 4.10.0 built with cuda support on jetson nano usign python 3.10.12. Build details in build_opencv/build_opencv.sh" \
