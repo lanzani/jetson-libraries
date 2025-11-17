@@ -1,5 +1,6 @@
 import cv2
 
+
 def main():
     unparsed_source = "rtsp://admin:admin@192.168.1.119:554/live/ch1?token=d2abaa37a7c3db1137d385e1d8c15fd2"
     target_shape = (360, 640)
@@ -29,5 +30,6 @@ def main():
     cap.release()
     cv2.destroyAllWindows()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
