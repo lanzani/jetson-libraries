@@ -11,10 +11,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
     apt upgrade -y && \
     apt install -y python3-pip && \
+    apt autoremove -y && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Upgrade pip
 RUN pip3 install --upgrade pip
 
-RUN pip3 install torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+RUN pip3 install --no-cache-dir torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu128

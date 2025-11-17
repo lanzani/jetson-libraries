@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
+FROM nvcr.io/nvidia/cuda:12.8.1-cudnn-runtime-ubuntu22.04
 # TO ghcr.io/lanzani/opencv:ubuntu22.04-cu12.8-py3.10.12-ocv4.10.0
 
 LABEL org.opencontainers.image.source=https://github.com/lanzani/jetson-libraries
@@ -38,3 +38,5 @@ RUN cd /tmp && \
     chmod +x OpenCV-unknown-x86_64.sh && \
     ./OpenCV-unknown-x86_64.sh --prefix=/usr/local --skip-license --exclude-subdir && \
     rm -rf /tmp/*
+
+RUN pip cache purge
