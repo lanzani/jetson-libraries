@@ -287,3 +287,4 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,python
+libraries/opencv/ubuntu22.04/cu12.8/py3.10.12/ocv4.10.0/OpenCV-unknown-x86_64.sh

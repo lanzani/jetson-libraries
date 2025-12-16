@@ -25,7 +25,7 @@ apt install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev
 apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 apt install -y python3.10-dev python3-dev python3-numpy
 apt install -y libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev
-apt install -y libv4l-dev v4l-utils qv4l2
+apt install -y libv4l-dev v4l-utils
 apt install -y curl unzip
 
 apt install -y gfortran libeigen3-dev libblas-dev libblas64-dev libatlas-base-dev liblapack-dev libopenblas-dev libgsl-dev

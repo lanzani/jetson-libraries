@@ -78,12 +78,10 @@ RUN apt-get update && apt-get upgrade -y && \
     libeigen3-dev
 
 # Install nvidia codec sdk
-# NOTE: not installed due to a format error of one of theese files
-#COPY libnvcuvid.so /usr/local/cuda/lib64/
-#COPY libnvidia-encode.so /usr/local/cuda/lib64/
-#COPY cuviddec.h /usr/local/cuda/include/
-#COPY nvcuvid.h /usr/local/cuda/include/
-#COPY nvEncodeAPI.h /usr/local/cuda/include/
+COPY ./Video_Codec_SDK_12.1.14/Video_Codec_SDK_12.1.14/Lib/linux/stubs/x86_64/*.so* /usr/local/cuda/lib64/stubs/
+COPY ./Video_Codec_SDK_12.1.14/Video_Codec_SDK_12.1.14/Interface/*.h /usr/local/cuda/include/
+RUN echo "/usr/local/cuda/lib64/stubs\n" > /etc/ld.so.conf.d/900_video-extractor.conf && ldconfig
+
 
 COPY build_opencv.sh ./
 
