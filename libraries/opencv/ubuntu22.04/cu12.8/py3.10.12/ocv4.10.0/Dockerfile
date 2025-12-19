@@ -32,6 +32,24 @@ RUN apt update && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Install nvidia codec sdk
+COPY ./build_opencv/Video_Codec_SDK_12.1.14/Video_Codec_SDK_12.1.14/Lib/linux/stubs/x86_64/*.so* /usr/local/cuda/lib64/stubs/
+COPY ./build_opencv/Video_Codec_SDK_12.1.14/Video_Codec_SDK_12.1.14/Interface/*.h /usr/local/cuda/include/
+RUN echo "/usr/local/cuda/lib64/stubs\n" > /etc/ld.so.conf.d/900_video-extractor.conf && ldconfig
+
+# Build gst-plugins-bad to have nvcodec plugin
+RUN apt update && apt install wget meson libgstreamer-plugins-base1.0-dev pkg-config libgstreamer1.0-dev cmake -y && \
+    wget https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.20.3.tar.xz && \
+    tar -xf gst-plugins-bad-1.20.3.tar.xz && \
+    cd gst-plugins-bad-1.20.3 && \
+    meson setup build \
+    -Dgpl=enabled \
+    -Dnvcodec=enabled \
+    -Dtests=disabled \
+    -Dexamples=disabled && \
+    ninja -C build && \
+    ninja -C build install
+
 COPY OpenCV-unknown-x86_64.sh /tmp/
 
 RUN cd /tmp && \
